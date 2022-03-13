@@ -11,11 +11,12 @@
 
 .landingPageText {
   
-  display: flex;
-  background-color: none;
-  
-  margin-top: 730px;
-  margin-left: 1694px;
+  display: flex; 
+  justify-content: right;
+  align-items: end;
+  margin-right: 25px;
+  width: auto;
+  height: auto;
 }
 
 
