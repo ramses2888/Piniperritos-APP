@@ -1,0 +1,23 @@
+
+.container {
+  display: block;
+  grid-template-columns: auto auto auto ;
+  
+  margin-top: 1px;
+  background-color: rgb(230, 114, 36);
+}
+
+.container-dogs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  
+  background: white;
+}
+
+.pagination {
+  background: rgb(102, 19, 158);
+  padding: 10px;
+  color:aliceblue
+}

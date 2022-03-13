@@ -1,0 +1,87 @@
+img {
+  height: 10rem;
+  margin-bottom: 51px;
+}
+
+
+.container-dog {
+
+  flex: 18% 0;
+  justify-content: stretch;
+  background-image: url(../images/fondoperro2.png);
+  color: rgb(121, 24, 185);
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid rgb(122, 28, 230);
+  justify-content: space-between;
+  width: 475px;
+  height: 502px;
+
+}
+
+.container-text {
+  width: 343px;
+  height: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 17px;
+}
+
+.container-img {
+
+  justify-content: center;
+  align-items: flex-start;
+  width: 408px;
+  height: 211px;
+  margin-bottom: -9px;
+}
+
+
+.button_delete {
+  position: relative;
+  background-color: #aa0505;
+  border: none;
+  font-size: 14px;
+  color: #ffffff;
+  padding: 10px;
+  width: 75px;
+  text-align: center;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 15px;
+  margin-left: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.container-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 17px;
+  width: 343px;
+  height: 211px;
+  margin-bottom: 30px;
+  line-height: 0px;
+}
+
+.tempi {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 17px;
+  width: 343px;
+  height: 211px;
+  margin-bottom: 100px;
+
+}

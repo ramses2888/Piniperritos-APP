@@ -1,0 +1,48 @@
+.createDog {
+  background-image: url("../images/fondoformulario.png");
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  color: rgb(255, 255, 255);
+}
+
+.create-dog-form {
+  background-color: #7606c0;
+
+  display: table-caption;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  border: 1px solid black;
+  justify-content: center;
+  margin-left: 11%;
+  margin-top: 1%;
+  font-size: 17px;
+  border-radius: 10px;
+  height: 100%;
+  width: 117%;
+}
+
+input {
+  margin: 5px;
+}
+
+
+.delete_temperament {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.create-dog-form-inputs {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+  margin-left: 10%;
+}
+
+.pop-up {
+  margin-top: 0px;
+}

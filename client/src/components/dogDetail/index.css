@@ -1,0 +1,66 @@
+.dog-detail {
+  background-image: url(../images/fondodetaildog.png);
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  color: white;
+}
+.button {
+  position: relative;
+  background-color: #3d95b8;
+  border: none;
+  font-size: 28px;
+  color: #ffffff;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.button:after {
+  content: "";
+  background: #f1f1f1;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px !important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s;
+}
+
+.button:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s;
+}
+
+.container-texto {
+  background-color: #7925c9;
+  border-radius: 10px;
+  
+  background-image: url(../images/datosperro.png);
+  background-size: auto;
+  width: 409px;
+  height: 630px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 115px;
+}
+
+h3 {
+  color: #7925c9;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 26px;
+}
+
+
