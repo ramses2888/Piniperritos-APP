@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import "./index.css";
 import pata from "../images/pata.png";
-
+import { useState } from "react";
 
 export default function LandingPage() {
+  useState(() => {
+        document.title = "Piniperritos";
+    });
   return (
     <div className="landingPage">
      
