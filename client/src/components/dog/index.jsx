@@ -1,13 +1,8 @@
-//hola dog
+
 import { Link } from "react-router-dom";
 import "./index.css";
-// import { useDispatch } from "react-redux";
-// import { deleteDog } from "../../store/actions";
 export default function Dog(props) {
-  // let dispatch = useDispatch();
-  // function handleClick() {
-  //   dispatch(deleteDog(props.id));
-  // }
+  
 
   return (
     props && (
@@ -40,13 +35,7 @@ export default function Dog(props) {
           <div className="tempi">{props.temperament}</div>
         </div>
 
-        {/* {props.id.length > 6 ? (
-          <button className="button_delete" onClick={(e) => handleClick(e)}>
-            Delete
-          </button>
-        ) : (
-          <></>
-        )} */}
+        
       </div>
     )
   );
