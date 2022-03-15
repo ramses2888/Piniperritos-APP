@@ -23,22 +23,23 @@ export default function CreateDog(props) {
     temperaments: [],
   });
 
-  //=====================================================================================
+  //======================ESTADO INICIAL DE ERRORES Y TEMPERAMENTOS==========================
 
-  const [errors, setErrors] = useState({});
-  let temperaments = useSelector((state) => state.temperaments);
+  const [errors, setErrors] = useState({}); //estado inicial de los errores
+  let temperaments = useSelector((state) => state.temperaments); //estado de temperamentos
 
   useEffect(() => {
     dispatch(getTemperaments()); //llamo a getTemperaments para que me traiga los temperamentos
   }, [dispatch]);
 
+  //===========================FUNCIONES DE LOS DATOS DEL FORMULARIO==========================
   function handleChange(e) {
     setState({
       ...state,
       [e.target.name]: e.target.value, //cambio el valor de name por el valor del input
     });
     setErrors(
-      validate({
+      validate({//valido los datos del formulario
         ...state,
         [e.target.name]: e.target.value,
       })
@@ -47,18 +48,7 @@ export default function CreateDog(props) {
 
   function handleSubmit(e) {
     if (
-      errors.name === null || //si el nombre esta vacio
-      errors.min_height === null || //si el minimo de altura esta vacio
-      errors.max_height === null ||
-      errors.min_weight === null ||
-      errors.max_weight === null ||
-      errors.min_life_span === null ||
-      errors.max_life_span === null
-    ) {
-      e.preventDefault(); //prevengo que se envie el formulario
-      return alert("Sorry, all fields are required except image");
-    } else if (
-      state.name === "" || //si el nombre esta vacio
+      state.name === "" ||
       state.min_height === "" ||
       state.max_height === "" ||
       state.min_weight === "" ||
@@ -66,19 +56,19 @@ export default function CreateDog(props) {
       state.min_life_span === "" ||
       state.max_life_span === ""
     ) {
-      e.preventDefault();
-      return alert("Sorry, all fields are required except image");
+      e.preventDefault(); //prevengo que se envie el formulario
+      return alert("Los campos no pueden estar vacios");
     } else if (
-      isNaN(parseInt(state.min_height)) || //si el minimo de altura esta vacio
-      isNaN(parseInt(state.max_height)) || //isNaN es una funcion que me dice si es un numero o no
-      isNaN(parseInt(state.min_weight)) || //parseInt es una funcion que me convierte un string a un numero
-      isNaN(parseInt(state.max_weight)) ||
-      isNaN(parseInt(state.min_life_span)) ||
-      isNaN(parseInt(state.max_life_span))
+      errors.name ||
+      errors.min_height ||
+      errors.max_height ||
+      errors.min_weight ||
+      errors.max_weight ||
+      errors.min_life_span ||
+      errors.max_life_span
     ) {
       e.preventDefault();
-
-      return alert("Sorry, please fill out the required fields correctly");
+      return alert("Los campos no pueden tener errores");
     } else {
       const dog = {
         name: state.name,
@@ -88,7 +78,7 @@ export default function CreateDog(props) {
         image:
           state.image !== ""
             ? state.image
-            : "https://previews.123rf.com/images/red33/red331112/red33111200014/11546849-skizzieren-sie-doodle-crazy-verr%C3%BCckt-puppy-dog-vektor-illustration.jpg",
+            : "https://t1.ea.ltmcdn.com/es/posts/8/9/2/nombres_graciosos_para_perros_machos_23298_0_600.webp",
         temperament: [...state.temperaments],
       };
       console.log(dog);
@@ -104,15 +94,13 @@ export default function CreateDog(props) {
         temperaments: [],
       });
       dispatch(createDog(dog));
-      alert("Successfully Created New Doggi :D");
+      alert("Has creado tu perro exitosamente");
       navigate("/home");
     }
   }
 
   function addTemp(e) {
-    // {
-    //   <label>Se anadino {e.target.value}</label>;
-    // }
+    
     setState({
       ...state,
       temperaments: [...state.temperaments, e.target.value],
@@ -120,13 +108,13 @@ export default function CreateDog(props) {
   }
 
   function validate(input) {
-    let expresion = /^(?![ .]+$)[a-zA-Z .]*$/gm; //expresion regular para validar el nombre
+    let expresion = /^(?![ .]+$)[a-zA-Z .]*$/gm; //expresion regular para validar el nombre, gm significa que se puede repetir
     let expresionheight = /^[0-9]*$/gm; //expresion regular para validar el numero de altura
     let expresionheightmax = /^[0-9]*$/gm; //expresion regular para validar el numero de peso
     let expresionweight = /^[0-9]*$/gm; //expresion regular para validar el numero de peso
     let expresionweightmax = /^[0-9]*$/gm; //expresion regular para validar el numero de peso
     let expresionlifemin = /^[0-9]*$/gm; //expresion regular para validar el numero de peso
-    let expresionlifemax = /^[0-9]*$/gm; //expresion regular para validar el numero de peso
+    let expresionlifemax = /^[0-9]*$/gm; //expresion regular para validar el numero de peso, gm significa que es un numero entero
     let errors = {};
     if (!input.name) {
       errors.name = "Nombre esta vacio";
@@ -144,8 +132,7 @@ export default function CreateDog(props) {
       errors.max_height = "--------Altura Max no es valida--------";
     } else if (parseInt(input.min_height) >= parseInt(input.max_height)) {
       errors.max_height = "--------El valor es incorrecto--------";
-    } //
-    else if (!input.min_weight) {
+    } else if (!input.min_weight) {
       errors.min_weight = "--------Peso Min esta vacio--------";
     } else if (expresionweight.test(input.min_weight) === false) {
       errors.min_weight = "--------Peso Min invalido--------";
@@ -185,25 +172,23 @@ export default function CreateDog(props) {
   return (
     <div className="createDog">
       <div className="create-dog-form">
-        <h1>Crea tu Perro!</h1>
+        <h1>Create your Dog!</h1>
 
         <div className="create-dog-form-inputs">
           <form onSubmit={(e) => handleSubmit(e)}>
-            <label>Nombre</label>
             <br />
             <input
+              placeholder="Name"
               autoComplete="off"
               type="text"
               name="name"
               value={state.name} //valor del input
               onChange={(e) => handleChange(e)} //funcion para capturar los datos del input
             ></input>
-
             {errors.name && <p className="pop-up">{errors.name}</p>}
 
-            <label>Min Height</label>
-
             <input
+              placeholder="Min Height"
               autoComplete="off"
               type="text"
               name="min_height"
@@ -213,9 +198,9 @@ export default function CreateDog(props) {
             {errors.min_height && <p className="pop-up">{errors.min_height}</p>}
             <br />
 
-            <label> Max Height</label>
             <br />
             <input
+              placeholder="Max Height"
               autoComplete="off"
               type="text"
               name="max_height"
@@ -225,9 +210,9 @@ export default function CreateDog(props) {
             {errors.max_height && <p className="pop-up">{errors.max_height}</p>}
             <br />
 
-            <label>Min Weight</label>
             <br />
             <input
+              placeholder="Min Weight"
               autoComplete="off"
               type="text"
               name="min_weight"
@@ -237,9 +222,9 @@ export default function CreateDog(props) {
             {errors.min_weight && <p className="pop-up">{errors.min_weight}</p>}
             <br />
 
-            <label>Max Weight</label>
             <br />
             <input
+              placeholder="Max Weight"
               autoComplete="off"
               type="text"
               name="max_weight"
@@ -249,9 +234,9 @@ export default function CreateDog(props) {
             {errors.max_weight && <p className="pop-up">{errors.max_weight}</p>}
             <br />
 
-            <label>Min Life Span</label>
             <br />
             <input
+              placeholder="Min Life Span"
               autoComplete="off"
               type="text"
               name="min_life_span"
@@ -263,9 +248,9 @@ export default function CreateDog(props) {
             )}
             <br />
 
-            <label>Max Life Span</label>
             <br />
             <input
+              placeholder="Max Life Span"
               autoComplete="off"
               type="text"
               name="max_life_span"
@@ -277,9 +262,9 @@ export default function CreateDog(props) {
             )}
             <br />
 
-            <label>Image</label>
             <br />
             <input
+              placeholder="Image"
               type="text"
               name="image"
               value={state.image}
@@ -291,14 +276,13 @@ export default function CreateDog(props) {
 
             <select onChange={(e) => addTemp(e)}>
               <option value="">Select Temperament</option>
-              {/* <br /> */}
-              {temperaments &&
-                temperaments.map((temperament) => {
+             
+              {temperaments && temperaments.map((temperament) => {
                   return (
                     <option
-                      temperament={temperament}
+                      temperament={temperament}//valor del input
                       key={i++}
-                      id={temperaments.indexOf(temperament)}
+                      id={temperaments.indexOf(temperament)}//id para identificar cada option
                       value={temperament}
                     >
                       {temperament}
@@ -308,7 +292,7 @@ export default function CreateDog(props) {
             </select>
             <br />
             <br />
-            {/* <label>{state.temperaments && state.temperaments}</label> */}
+            
             <select onChange={(e) => deleteTemp(e)}>
               <option value="">Select Temperament to Delete</option>
               {state.temperaments &&
@@ -330,14 +314,7 @@ export default function CreateDog(props) {
             <input type="submit" value="Send" className="button"></input>
           </form>
         </div>
-
-        {/* <div className="delete_temperament">
-          <label>Select Temperament to Delete</label>
-          {state.temperaments &&
-            state.temperaments.map((temperament) => {
-              return <input type="checkbox">{temperament}</input>;
-            })}
-        </div> */}
+        
         <br />
 
         <Link to="/home">
