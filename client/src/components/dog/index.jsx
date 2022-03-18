@@ -18,7 +18,7 @@ export default function Dog(props) {
               src={
                 props.img
                   ? props.img
-                  : "https://previews.123rf.com/images/red33/red331112/red33111200014/11546849-skizzieren-sie-doodle-crazy-verr%C3%BCckt-puppy-dog-vektor-illustration.jpg"
+                  : "https://t1.ea.ltmcdn.com/es/posts/8/9/2/nombres_graciosos_para_perros_machos_23298_0_600.webp"
               }
               alt="imagen"
             />
